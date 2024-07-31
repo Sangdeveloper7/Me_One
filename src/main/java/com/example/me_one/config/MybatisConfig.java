@@ -11,13 +11,13 @@ import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
 import javax.sql.DataSource;
 
 @Configuration
-@MapperScan(basePackages={"com.thc.smspr2.mapper"}, sqlSessionFactoryRef="sqlSessionFactory")
+@MapperScan(basePackages={"com.example.me_one2.mapper"}, sqlSessionFactoryRef="sqlSessionFactory")
 public class MybatisConfig {
 	@Bean(name="sqlSessionFactory")
 	public SqlSessionFactory sqlSessionFactory(@Qualifier("dataSource") DataSource dataSource) throws Exception {
 		SqlSessionFactoryBean sqlSessionFactoryBean = new SqlSessionFactoryBean();
 		sqlSessionFactoryBean.setDataSource(dataSource);
-		sqlSessionFactoryBean.setTypeAliasesPackage("com.thc.smspr2.dto");
+		sqlSessionFactoryBean.setTypeAliasesPackage("com.thc.me_one2.dto");
 		sqlSessionFactoryBean.setMapperLocations(new PathMatchingResourcePatternResolver().getResources("classpath:/mapper/*.xml"));
 		return sqlSessionFactoryBean.getObject();
 	}
