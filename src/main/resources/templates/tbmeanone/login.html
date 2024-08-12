@@ -1,35 +1,92 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
 <head>
     <meta charset="UTF-8">
-    <title>Page1</title>
-
+    <title>Me & One 로그인</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0;
+        }
+        .login-container {
+            background-color: white;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        input {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        .links {
+            text-align: center;
+            margin-top: 15px;
+        }
+        .links a {
+            color: #007bff;
+            text-decoration: none;
+        }
+    </style>
 </head>
 <body>
-
-<input type="text" id="tbboard_id" />
-<button onclick="detail_tbboard()">글 불러오기</button>
+<div class="login-container">
+    <h1>Me & One</h1>
+    <form id="loginForm">
+        <input type="text" id="username" placeholder="아이디" required>
+        <input type="password" id="password" placeholder="비밀번호" required>
+        <button type="button" onclick="login()">로그인</button>
+    </form>
+    <div class="links">
+        <a href="/signup">회원가입</a>
+    </div>
+</div>
 
 <script>
-    function detail_tbboard(){
+    function login() {
         $.ajax({
-            url: "/api/tbboard/detail/" + $("#tbboard_id").val(),
-            type: "GET",
-            contentType : 'application/json; charset=utf-8',
-            data: {},
-            cache: false,
-            success: (data, status, xhr)=>{
-                //alert("success!!");
-                alert(JSON.stringify(data));
+            url: "/tbmeanone/login",
+            type: "POST",
+            contentType: 'application/json; charset=utf-8',
+            data: JSON.stringify({
+                username: $("#username").val(),
+                password: $("#password").val()
+            }),
+            success: function(data, status, xhr) {
+                alert("로그인 성공!");
+                window.location.href = "/enter.html";
             },
-            error: (data, status, xhr)=>{
-                alert("error!!");
-                alert(JSON.stringify(data));
-            },
+            error: function(xhr, status, error) {
+                alert("로그인 실패: " + xhr.responseText);
+            }
         });
     }
 </script>
-
 </body>
 </html>

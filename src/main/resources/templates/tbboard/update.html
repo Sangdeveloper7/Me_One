@@ -8,33 +8,36 @@
 </head>
 <body>
 
-조회!!<br/>
-아이디
-<input type="text" id="tbpost_id" />
+
+
+ID
+<input type="text" id="tbboard_id" />
+<button onclick="detail_tbboard()">글 불러오기</button>
+
 제목
-<input type="text" id="tbpost_title" />
+<input type="text" id="tbboard_title" />
 내용
-<input type="text" id="tbpost_content" />
-<button onclick="detail_tbpost()">글 조회</button>
-<button onclick="update_tbpost()">글 수정</button>
-<button onclick="delete_tbpost()">글 삭제</button>
+<input type="text" id="tbboard_content" />
+작성자
+<input type="text" id="tbboard_writer" />
+<button onclick="update_tbboard()">글 수정</button>
+<button onclick="delete_tbboard()">글 삭제</button>
 
 <script>
-    function detail_tbpost(){
+    function detail_tbboard(){
         $.ajax({
-            url: "/api/tbpost/detail",
+            url: "/api/tbboard/detail/" + $("#tbboard_id").val(),
             type: "GET",
             contentType : 'application/json; charset=utf-8',
-            data: {
-                id : $("#tbpost_id").val()
-            },
+            data: {},
             cache: false,
             success: (data, status, xhr)=>{
                 //alert("success!!");
+                let tbboard = data.data;
                 alert(JSON.stringify(data));
-                let obj_detail = data.resultData;
-                $("#tbpost_title").val(obj_detail.title);
-                $("#tbpost_content").val(obj_detail.content);
+                $("#tbboard_title").val(tbboard.title);
+                $("#tbboard_content").val(tbboard.content);
+                $("#tbboard_writer").val(tbboard.writer);
             },
             error: (data, status, xhr)=>{
                 alert("error!!");
@@ -42,15 +45,19 @@
             },
         });
     }
-    function update_tbpost(){
+
+
+
+    function update_tbboard(){
         $.ajax({
-            url: "/api/tbpost/update",
+            url: "/api/tbboard/update",
             type: "GET",
             contentType : 'application/json; charset=utf-8',
             data: {
-                id : $("#tbpost_id").val(),
-                title : $("#tbpost_title").val(),
-                content : $("#tbpost_content").val()
+                id : $("#tbboard_id").val(),
+                title : $("#tbboard_title").val(),
+                content : $("#tbboard_content").val(),
+                writer : $("#tbboard_writer").val()
             },
             cache: false,
             success: (data, status, xhr)=>{
@@ -63,13 +70,14 @@
             },
         });
     }
-    function delete_tbpost(){
+
+    function delete_tbboard(){
         $.ajax({
-            url: "/api/tbpost/delete",
+            url: "/api/tbboard/delete",
             type: "GET",
             contentType : 'application/json; charset=utf-8',
             data: {
-                id : $("#tbpost_id").val()
+                id : $("#tbboard_id").val()
             },
             cache: false,
             success: (data, status, xhr)=>{

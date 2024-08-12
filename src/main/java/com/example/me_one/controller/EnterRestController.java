@@ -21,16 +21,16 @@ public class EnterRestController {
         this.enterRestController = enterRestController;
     }
 
-    @GetMapping("/create")
-    public Map<String, Object> create(
-            @RequestParam String title
-            , @RequestParam String content
-            , @RequestParam String writer
-    ){
-        Map<String, Object> tbboard = new HashMap<>();
-        tbboard.put("title", title);
-        tbboard.put("content", content);
-        tbboard.put("writer", writer);
-        return enterService.create(enterService);
-    }
+//    @GetMapping("/create")
+//    public Map<String, Object> create(
+//            @RequestParam String title
+//            , @RequestParam String content
+//            , @RequestParam String writer
+//    ){
+//        Map<String, Object> tbboard = new HashMap<>();
+//        tbboard.put("title", title);
+//        tbboard.put("content", content);
+//        tbboard.put("writer", writer);
+//        return enterService.create(enterService);
+//    }
 }

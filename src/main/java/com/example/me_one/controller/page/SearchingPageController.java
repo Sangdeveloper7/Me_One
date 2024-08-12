@@ -10,5 +10,5 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class SearchingPageController {
 
     @GetMapping({"/search", "/Search"})
-    public String search() {return "search"; }
+    public String search() {return "tbmeanone/search"; }
 }

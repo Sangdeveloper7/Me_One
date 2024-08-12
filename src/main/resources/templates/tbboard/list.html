@@ -8,33 +8,25 @@
 </head>
 <body>
 <div>목록!!</div>
-제목
-<input type="text" id="tbpost_title" />
-<div id="div_tbpost_list"></div>
+<div id="div_tbboard_list"></div>
 
 
-<button onclick="list_tbpost()">글 불러오기</button>
+<button onclick="list_tbboard()">글 불러오기</button>
 
 <script>
-    function list_tbpost(){
+    function list_tbboard(){
         $.ajax({
-            url: "/api/tbpost/list",
+            url: "/api/tbboard/list",
             type: "GET",
             contentType : 'application/json; charset=utf-8',
-            data: {
-                title : $("#tbpost_title").val()
-            },
+            data: {},
             cache: false,
             success: (data, status, xhr)=>{
                 alert(JSON.stringify(data));
-
-                $("#div_tbpost_list").html("");
-
-                let alist = data.list;
+                let alist = data.resultData;
                 for(each of alist){
-                    //alert(JSON.stringify(each));
-                    $("#div_tbpost_list").append(
-                        "<div><a href='/tbpost/detail/"+each.id+"'>"+each.id + "//"+each.title + "//"+each.content + "//"+"</a></div>"
+                    $("#div_tbboard_list").append(
+                        "<div>"+each.id + "//"+each.title + "//"+each.content + "//"+"</div>"
                     );
                 }
             },

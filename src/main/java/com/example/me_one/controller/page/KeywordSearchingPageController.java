@@ -10,5 +10,5 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class KeywordSearchingPageController {
 
     @GetMapping({"/keyword", "/Keyword"})
-    public String keyword() {return "keyword"; }
+    public String keyword() {return "tbmeanone/keywordsearch"; }
 }

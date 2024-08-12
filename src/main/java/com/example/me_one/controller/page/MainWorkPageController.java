@@ -10,5 +10,5 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class MainWorkPageController {
 
     @GetMapping({"/Mainwork", "/mainwork"})
-    public String mainwork() {return "mainwork"; }
+    public String mainwork() {return "tbmeanone/mainwork"; }
 }

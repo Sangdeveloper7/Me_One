@@ -10,5 +10,5 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class MainServicePageController {
 
     @GetMapping({"/Mainserv", "/mainserv"})
-    public String mainserv() {return "mainserv"; }
+    public String mainserv() {return "tbmeanone/mainservice"; }
 }

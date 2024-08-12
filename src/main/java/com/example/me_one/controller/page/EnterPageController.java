@@ -10,5 +10,5 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class EnterPageController {
 
     @GetMapping({"/enter", "/Enter"})
-    public String enter() {return "enter"; }
+    public String enter() {return "tbmeanone/enter"; }
 }
