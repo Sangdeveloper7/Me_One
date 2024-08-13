@@ -11,4 +11,5 @@ public class MainServicePageController {
 
     @GetMapping({"/Mainserv", "/mainserv"})
     public String mainserv() {return "tbmeanone/mainservice"; }
+
 }

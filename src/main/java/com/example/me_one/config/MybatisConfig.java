@@ -1,4 +1,4 @@
-package com.example.me_one.config;
+package com.thc.smspr.config;
 
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.mybatis.spring.SqlSessionFactoryBean;
@@ -10,14 +10,15 @@ import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
 
 import javax.sql.DataSource;
 
+// 2024-07-12 추가 (파일 전체)
 @Configuration
-@MapperScan(basePackages={"com.example.me_one2.mapper"}, sqlSessionFactoryRef="sqlSessionFactory")
+@MapperScan(basePackages={"com.example.me_one.mapper"}, sqlSessionFactoryRef="sqlSessionFactory")
 public class MybatisConfig {
 	@Bean(name="sqlSessionFactory")
 	public SqlSessionFactory sqlSessionFactory(@Qualifier("dataSource") DataSource dataSource) throws Exception {
 		SqlSessionFactoryBean sqlSessionFactoryBean = new SqlSessionFactoryBean();
 		sqlSessionFactoryBean.setDataSource(dataSource);
-		sqlSessionFactoryBean.setTypeAliasesPackage("com.thc.me_one2.dto");
+		sqlSessionFactoryBean.setTypeAliasesPackage("com.thc.smspr.dto");
 		sqlSessionFactoryBean.setMapperLocations(new PathMatchingResourcePatternResolver().getResources("classpath:/mapper/*.xml"));
 		return sqlSessionFactoryBean.getObject();
 	}

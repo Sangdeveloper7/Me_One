@@ -1,35 +1,54 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Page1</title>
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <title>회원가입</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0;
+        }
+        .signup-form {
+            background-color: white;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        input {
+            display: block;
+            margin: 10px 0;
+            padding: 5px;
+            width: 200px;
+        }
+        button {
+            margin-top: 10px;
+            padding: 5px 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
 </head>
 <body>
-
-<input type="text" id="tbboard_id" />
-<button onclick="detail_tbboard()">글 불러오기</button>
-
-<script>
-    function detail_tbboard(){
-        $.ajax({
-            url: "/api/tbboard/detail/" + $("#tbboard_id").val(),
-            type: "GET",
-            contentType : 'application/json; charset=utf-8',
-            data: {},
-            cache: false,
-            success: (data, status, xhr)=>{
-                //alert("success!!");
-                alert(JSON.stringify(data));
-            },
-            error: (data, status, xhr)=>{
-                alert("error!!");
-                alert(JSON.stringify(data));
-            },
-        });
-    }
-</script>
-
+<div class="signup-form">
+    <h2>회원가입</h2>
+    <form th:action="@{/signup}" method="post">
+        <input type="text" name="아이디" placeholder="아이디" required>
+        <input type="password" name="비밀번호" placeholder="비밀번호" required>
+        <input type="text" name="이름" placeholder="이름" required>
+        <button type="submit">회원가입</button>
+        <button type="button" onclick="location.href='/'">취소</button>
+    </form>
+</div>
 </body>
 </html>

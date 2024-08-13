@@ -8,9 +8,11 @@ logging:
     org.hibernate.type.descriptor.sql.BasicBinder: trace
 
 spring:
-  config:
-    import:
-      - classpath:/yaml/application-keys.yaml
+  datasource:
+    url: jdbc:mysql://www.adapter-gwangalli.com:3306/scsang3?characterEncoding=UTF-8&serverTimezone=Asia/Seoul
+    username: root
+    password: ivill0080@
+    driver-class-name: com.mysql.cj.jdbc.Driver
   jpa:
     defer-datasource-initialization: true
     hibernate.ddl-auto: update
@@ -27,6 +29,8 @@ spring:
       enabled: true
     restart:
       enabled: true
+    thymeleaf:
+      cache: false
     remote:
       restart:
         enabled: false

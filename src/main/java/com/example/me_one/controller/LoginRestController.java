@@ -1,6 +1,6 @@
 package com.example.me_one.controller;
 
-import com.example.me_one.util.FileUpload;
+//import com.example.me_one.util.FileUpload;
 import io.swagger.v3.oas.annotations.Operation;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
@@ -13,14 +13,22 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
-@RequestMapping("api")
+@RequestMapping("")
 @RestController
 public class LoginRestController {
 
-    @GetMapping("/login")
-    public String login(@RequestParam int test1, @RequestParam int test2){
-        return "hahah!!! " + test1 + "///" + test2;
-    }
+//    @GetMapping("/login")
+//    public boolean login(@RequestParam String id, @RequestParam String pw){
+//        boolean result = false;
+//        System.out.println("id : " + id + "// pw" + pw);
+//        if("admin".equals(id)){
+//            if("abcd1234".equals(pw)){
+//                result = true;
+//            }
+//        }
+//
+//        return result;
+//    }
 
     @GetMapping("/add")
     public String add(@RequestParam int test1, @RequestParam int test2){
@@ -28,6 +36,8 @@ public class LoginRestController {
 
         return "result : " + result;
     }
+
+
 
 
 //    @GetMapping("/login")
