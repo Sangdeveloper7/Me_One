@@ -46,7 +46,7 @@ public class TbuserDto {
         private String name;
 
         public Tbuser toEntity() {
-            return Tbuser.of(id, password, name);
+            return Tbuser.of(id, password, name, true);
         }
     }
 
@@ -76,13 +76,9 @@ public class TbuserDto {
         @Size(max = 100)
         private String name;
 
-        @Schema(description = "Nickname", example = "hong123")
+        @Schema(description = "Password", example = "password123")
         @Size(max = 100)
-        private String nick;
-
-        @Schema(description = "Phone Number", example = "010-1234-5678")
-        @Size(max = 100)
-        private String phone;
+        private String password;
     }
 
     @Builder
@@ -100,8 +96,8 @@ public class TbuserDto {
     @Getter
     @Setter
     public static class DeleteResDto {
-        @Schema(description = "Deletion Status", example = "true")
-        private String deleted;
+        @Schema(description = "Deletion Status", example = "false")
+        private boolean deleted;
     }
 
     @Builder
@@ -112,5 +108,9 @@ public class TbuserDto {
     public static class ListReqDto {
         @Schema(description = "User Name", example = "홍길동")
         private String name;
+
+        @Schema(description = "Password", example = "password123")
+        private String password;
+
     }
 }

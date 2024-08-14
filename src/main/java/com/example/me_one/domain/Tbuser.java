@@ -38,17 +38,19 @@ public class Tbuser {
     @Setter @Column(nullable = false) private String username; // 사용자아이디
     @Setter @Column(nullable = false) private String password; // 비번
     @Setter @Column(nullable = false) private String name;
+    @Setter @Column(nullable = false) private boolean delete;
 
     protected  Tbuser(){}
 
-    private Tbuser(String username, String password, String name) {
+    private Tbuser(String username, String password, String name, boolean delete) {
         this.username = username;
         this.password = password;
         this.name = name;
+        this.delete = delete;
     }
 
-    public static Tbuser of(String username, String password, String name){
-        return new Tbuser(username, password, name);
+    public static Tbuser of(String username, String password, String name, boolean delete){
+        return new Tbuser(username, password, name, delete);
     }
 
     @PrePersist
