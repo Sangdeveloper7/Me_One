@@ -12,35 +12,34 @@ import java.util.List;
 public class TbuserDto {
 
     @Builder
-    @Schema
     @Getter
     @Setter
     @AllArgsConstructor
     @NoArgsConstructor
     public static class CreateResDto {
+        @Schema(description = "User ID", example = "length32textnumber")
         private String id;
     }
 
     @Builder
-    @Schema
     @Getter
     @Setter
     @AllArgsConstructor
     @NoArgsConstructor
     public static class CreateReqDto {
-        @Schema(description = "write_id", example="")
+        @Schema(description = "User ID", example = "user123")
         @NotNull
         @NotEmpty
         @Size(max = 100)
         private String id;
 
-        @Schema(description = "pw", example="")
+        @Schema(description = "Password", example = "password123")
         @NotNull
         @NotEmpty
         @Size(max = 100)
         private String password;
 
-        @Schema(description = "name", example="홍길동")
+        @Schema(description = "User Name", example = "홍길동")
         @NotNull
         @NotEmpty
         @Size(max = 100)
@@ -51,20 +50,6 @@ public class TbuserDto {
         }
     }
 
-    @Builder
-    @Schema
-    @Getter
-    @Setter
-    @AllArgsConstructor
-    @NoArgsConstructor
-    public static class SelectReqDto {
-        @Schema(description = "id", example="")
-        @NotNull
-        @NotEmpty
-        private String id;
-    }
-
-    @Schema
     @Getter
     @Setter
     public static class SelectResDto {
@@ -76,124 +61,56 @@ public class TbuserDto {
     }
 
     @Builder
-    @Schema
+    @Getter
+    @Setter
+    @AllArgsConstructor
+    @NoArgsConstructor
+    public static class UpdateReqDto {
+        @Schema(description = "User ID", example = "user123")
+        @NotNull
+        @NotEmpty
+        @Size(max = 100)
+        private String id;
+
+        @Schema(description = "User Name", example = "홍길동")
+        @Size(max = 100)
+        private String name;
+
+        @Schema(description = "Nickname", example = "hong123")
+        @Size(max = 100)
+        private String nick;
+
+        @Schema(description = "Phone Number", example = "010-1234-5678")
+        @Size(max = 100)
+        private String phone;
+    }
+
+    @Builder
     @Getter
     @Setter
     @AllArgsConstructor
     @NoArgsConstructor
     public static class DeleteReqDto {
-        @Schema(description = "id", example="")
+        @Schema(description = "User ID", example = "user123")
         @NotNull
         @NotEmpty
         private String id;
     }
 
+    @Getter
+    @Setter
+    public static class DeleteResDto {
+        @Schema(description = "Deletion Status", example = "true")
+        private String deleted;
+    }
+
     @Builder
-    @Schema
     @Getter
     @Setter
     @AllArgsConstructor
     @NoArgsConstructor
-    public static class DeleteResDto {
-        @Schema(description = "삭제 여부", example="true")
-        private String deleted;
+    public static class ListReqDto {
+        @Schema(description = "User Name", example = "홍길동")
+        private String name;
     }
-
-//    @Builder
-//    @Schema
-//    @Getter
-//    @Setter
-//    @AllArgsConstructor
-//    @NoArgsConstructor
-//    public static class ScrollListReqDto {
-//
-//        @Schema(description = "cursor", example="")
-//        private String cursor;
-//
-//        @Schema(description = "perpage", example="")
-//        private Integer perpage;
-//
-//        @Schema(description = "orderby", example="")
-//        private String orderby;
-//
-//        @Schema(description = "orderway", example="")
-//        private String orderway;
-//
-//        @Schema(description = "deleted", example="")
-//        private String deleted;
-//
-//        @Schema(description = "이름", example="")
-//        private String name;
-//    }
-//
-//    @Builder
-//    @Schema
-//    @Getter
-//    @Setter
-//    @AllArgsConstructor
-//    @NoArgsConstructor
-//    public static class ListReqDto {
-//        @Schema(description = "이름", example="")
-//        private String name;
-//    }
-//
-//    @Builder
-//    @Schema
-//    @Getter
-//    @Setter
-//    @AllArgsConstructor
-//    @NoArgsConstructor
-//    public static class PagedListReqDto {
-//
-//        @Schema(description = "callpage", example="")
-//        private Integer callpage;
-//
-//        @Schema(description = "perpage", example="")
-//        private Integer perpage;
-//
-//        @Schema(description = "orderby", example="")
-//        private String orderby;
-//
-//        @Schema(description = "orderway", example="")
-//        private String orderway;
-//
-//        @Schema(description = "offset", example="")
-//        private Integer offset;
-//
-//        @Schema(description = "deleted", example="")
-//        private String deleted;
-//
-//        @Schema(description = "이름", example="")
-//        private String name;
-//    }
-//
-//    @Builder
-//    @Schema
-//    @Getter
-//    @Setter
-//    @AllArgsConstructor
-//    @NoArgsConstructor
-//    public static class PagedListResDto {
-//
-//        @Schema(description = "callpage", example="")
-//        private Integer callpage;
-//
-//        @Schema(description = "perpage", example="")
-//        private Integer perpage;
-//
-//        @Schema(description = "orderby", example="")
-//        private String orderby;
-//
-//        @Schema(description = "orderway", example="")
-//        private String orderway;
-//
-//        @Schema(description = "listsize", example="")
-//        private Integer listsize;
-//
-//        @Schema(description = "pagesize", example="")
-//        private Integer pagesize;
-//
-//        @Schema(description = "list", example="")
-//        private List<SelectResDto> list;
-//    }
 }
