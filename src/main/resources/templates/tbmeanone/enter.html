@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
     <meta charset="UTF-8">
     <title>회원가입</title>
     <style>
@@ -42,13 +44,43 @@
 <body>
 <div class="signup-form">
     <h2>회원가입</h2>
-    <form th:action="@{/signup}" method="post">
-        <input type="text" name="아이디" placeholder="아이디" required>
-        <input type="password" name="비밀번호" placeholder="비밀번호" required>
-        <input type="text" name="이름" placeholder="이름" required>
-        <button type="submit">회원가입</button>
+        <input type="text" id="tbuser_id" placeholder="아이디" required>
+        <input type="password" id="tbuser_pw" placeholder="비밀번호" required>
+        <input type="text" id="tbuser_name" placeholder="이름" required>
+        <button onclick="create()">회원가입</button>
         <button type="button" onclick="location.href='/'">취소</button>
-    </form>
+
 </div>
+
+
+
+<script>
+    function create(){
+        $.ajax({
+            url : '/api/tbuser',
+            type : 'POST',
+            contentType:'application/json; charset=utf-8',
+            data: JSON.stringify({
+                'username' : $("#tbuser_id").val(),
+                'password' : $("#tbuser_pw").val(),
+                'name' : $("#tbuser_name").val()
+
+            }),
+            beforeSend:function(){
+                //
+            },
+            success : function(data){
+                alert(JSON.stringify(data));
+                console.log(data)
+            },
+            error : function(request, status, error){
+                alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+            },
+            complete:function(){
+                //
+            }
+        });
+    }
+</script>
 </body>
 </html>

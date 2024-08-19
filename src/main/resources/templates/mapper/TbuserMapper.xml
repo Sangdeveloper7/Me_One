@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0/EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.me_one.mapper.TbuserMapper">
+
+	<!-- Select a detailed Tbuser object based on the id -->
+	<select id="detail" parameterType="hashMap" resultType="com.example.me_one.dto.TbuserDto$SelectResDto">
+		SELECT tbuser.id
+			 ,tbuser.deleted
+			 ,tbuser.created_at AS createdAt
+			 ,tbuser.modified_at AS modifiedAt
+			 ,tbuser.username
+			 ,tbuser.name
+			 ,tbuser.nick
+			 ,tbuser.phone
+			 ,tbuser.mpic
+			 ,tbuser.content
+		FROM tbuser
+		WHERE tbuser.id = #{id}
+	</select>
+
+	<!-- Select a list of Tbuser objects based on optional filters -->
+	<select id="list" parameterType="hashMap" resultType="com.example.me_one.dto.TbuserDto$SelectResDto">
+		SELECT tbuser.id
+		,tbuser.deleted
+		,tbuser.created_at AS createdAt
+		,tbuser.modified_at AS modifiedAt
+		,tbuser.username
+		,tbuser.name
+		,tbuser.nick
+		,tbuser.phone
+		,tbuser.mpic
+		,tbuser.content
+		FROM tbuser
+		WHERE tbuser.id IS NOT NULL
+		<if test="username != null and username != ''">AND tbuser.username = #{username}</if>
+		<if test="name != null and name != ''">AND tbuser.name LIKE CONCAT('%', #{name}, '%')</if>
+		<if test="nick != null and nick != ''">AND tbuser.nick LIKE CONCAT('%', #{nick}, '%')</if>
+		<if test="phone != null and phone != ''">AND tbuser.phone = #{phone}</if>
+	</select>
+
+</mapper>

@@ -46,7 +46,7 @@ public class TbuserDto {
         private String name;
 
         public Tbuser toEntity() {
-            return Tbuser.of(id, password, name, true);
+            return Tbuser.of(id, password, name);
         }
     }
 

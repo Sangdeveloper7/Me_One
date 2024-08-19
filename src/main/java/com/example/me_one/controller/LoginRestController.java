@@ -1,21 +1,19 @@
 package com.example.me_one.controller;
 
 //import com.example.me_one.util.FileUpload;
-import io.swagger.v3.oas.annotations.Operation;
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.validation.Valid;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
+import com.example.me_one.service.TbuserService;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
 
-import java.io.IOException;
-import java.util.HashMap;
-import java.util.Map;
-
-@RequestMapping("")
+@RequestMapping("/api/tbuser")
 @RestController
 public class LoginRestController {
+
+    private final TbuserService tbuserService;
+
+    public LoginRestController(TbuserService tbuserService) {
+        this.tbuserService = tbuserService;
+    }
+
 
 //    @GetMapping("/login")
 //    public boolean login(@RequestParam String id, @RequestParam String pw){
@@ -29,14 +27,14 @@ public class LoginRestController {
 //
 //        return result;
 //    }
-
-    @GetMapping("/add")
-    public String add(@RequestParam int test1, @RequestParam int test2){
-        int result = test1 + test2;
-
-        return "result : " + result;
-    }
-
+//
+//    @GetMapping("/add")
+//    public String add(@RequestParam int test1, @RequestParam int test2){
+//        int result = test1 + test2;
+//
+//        return "result : " + result;
+//    }
+//
 
 
 

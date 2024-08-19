@@ -1,6 +1,5 @@
 package com.example.me_one.domain;
 
-
 import com.example.me_one.dto.TbuserDto;
 import jakarta.persistence.*;
 import lombok.Getter;
@@ -14,12 +13,10 @@ import java.time.LocalDateTime;
 import java.util.UUID;
 
 @EntityListeners(AuditingEntityListener.class)
-
 @Getter
 @Entity
 public class Tbuser {
     @Id private String id;
-
 
     @Setter
     @Column(nullable = false) private String deleted; // 삭제여부
@@ -34,23 +31,20 @@ public class Tbuser {
     @Column(nullable = false)
     protected LocalDateTime modifiedAt; // 수정일시
 
-
     @Setter @Column(nullable = false) private String username; // 사용자아이디
-    @Setter @Column(nullable = false) private String password; // 비번
-    @Setter @Column(nullable = false) private String name;
-    @Setter @Column(nullable = false) private boolean delete;
+    @Setter @Column(nullable = false) private String password; // 비밀번호
+    @Setter @Column(nullable = false) private String name; // 사용자 이름
 
-    protected  Tbuser(){}
+    protected Tbuser() {}
 
-    private Tbuser(String username, String password, String name, boolean delete) {
+    private Tbuser(String username, String password, String name) {
         this.username = username;
         this.password = password;
         this.name = name;
-        this.delete = delete;
     }
 
-    public static Tbuser of(String username, String password, String name, boolean delete){
-        return new Tbuser(username, password, name, delete);
+    public static Tbuser of(String username, String password, String name){
+        return new Tbuser(username, password, name);
     }
 
     @PrePersist
@@ -61,11 +55,5 @@ public class Tbuser {
 
     public TbuserDto.CreateResDto toTbuserAfterCreateDto() {
         return TbuserDto.CreateResDto.builder().id(getId()).build();
-        /*
-        TbuserDto.TbuserAfterCreateDto a =  new TbuserDto.TbuserAfterCreateDto();
-        a.setId(getId());
-        return a;
-        */
     }
-
 }
